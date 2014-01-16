@@ -1,3 +1,5 @@
+%define _unitdir_user /usr/lib/systemd/user
+
 Name:       weston-ivi
 Version:    1
 Release:    0
@@ -7,11 +9,19 @@ Group:      Automotive/Configuration
 BuildArch:  noarch
 Source0:    %{name}-%{version}.tar.bz2
 Source1001: weston-ivi.manifest
-Requires: weekeyboard
+Provides:   weston-startup
 
 %description
-This package contains Tizen IVI-specific configuration and set-up for
-the Weston compositor.
+This package contains Tizen IVI-specific set-up for the Weston
+compositor, including systemd unit files, udev rules, etc.
+
+%package config
+Summary:    Tizen IVI Weston configuration
+Group:      Automotive/Configuration
+Requires:   weekeyboard
+%description config
+This package contains Tizen IVI-specific configuration for the Weston
+compositor.
 
 %prep
 %setup -q
@@ -21,6 +31,16 @@ cp %{SOURCE1001} .
 
 %install
 
+install -d %{buildroot}%{_unitdir_user}/weston.target.wants
+install -m 644 weston.service %{buildroot}%{_unitdir_user}/weston.service
+ln -sf ../weston.service %{buildroot}/%{_unitdir_user}/weston.target.wants/
+
+mkdir -p %{buildroot}/lib/udev/rules.d/
+install -m 0644 99-egalax.rules %{buildroot}/lib/udev/rules.d/
+
+mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
+install -m 0644 weston.sh %{buildroot}%{_sysconfdir}/profile.d/
+
 %define weston_config_dir %{_sysconfdir}/xdg/weston
 mkdir -p %{buildroot}%{weston_config_dir}
 install -m 0644 weston.ini %{buildroot}%{weston_config_dir}
@@ -29,4 +49,11 @@ install -m 0644 weston.ini %{buildroot}%{weston_config_dir}
 %manifest %{name}.manifest
 %defattr(-,root,root)
 %license COPYING
+/lib/udev/rules.d/99-egalax.rules
+%{_unitdir_user}/weston.service
+%{_unitdir_user}/weston.target.wants/weston.service
+
+%files config
+%manifest %{name}.manifest
 %config %{weston_config_dir}/weston.ini
+%config %{_sysconfdir}/profile.d/*
