@@ -1,3 +1,6 @@
+* Thu Jan 23 2014 Ossama Othman <ossama.othman@intel.com> accepted/tizen/ivi/20140122.212932@9423bdb
+- Revert "Added missing 'SmackExecLabel=User' setting to weston.service."
+
 * Tue Jan 21 2014 Ossama Othman <ossama.othman@intel.com> accepted/tizen/ivi/20140114.230555@2b8d7b9
 - Added missing 'SmackExecLabel=User' setting to weston.service.
 - [TIVI-2213] Added weston start-up files, and split config to subpackage.
