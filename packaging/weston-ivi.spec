@@ -17,6 +17,7 @@ compositor, including systemd unit files, etc.
 Summary:    Tizen IVI Weston configuration
 Group:      Automotive/Configuration
 Requires:   weekeyboard
+Conflicts:  ico-uxf-weston-plugin
 %description config
 This package contains Tizen IVI-specific configuration for the Weston
 compositor.
