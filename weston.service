@@ -6,7 +6,6 @@ Requires=dbus.socket
 ExecStart=/usr/bin/weston-launch -- -i0
 StandardInput=tty
 TTYPath=/dev/tty1
-SmackExecLabel=User
 
 [Install]
 WantedBy=weston.target
