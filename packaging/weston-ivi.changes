@@ -1,3 +1,6 @@
+* Fri Jan 22 2014 Ossama Othman <ossama.othman@intel.com> submit/tizen/20140123.175041@f917dc5
+- Changed background and panel colors to use Tizen palette colors.
+
 * Thu Jan 23 2014 Ossama Othman <ossama.othman@intel.com> accepted/tizen/ivi/20140122.212932@9423bdb
 - Revert "Added missing 'SmackExecLabel=User' setting to weston.service."
 
