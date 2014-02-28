@@ -1,3 +1,6 @@
+* Fri Feb 28 2014 Ossama Othman <ossama.othman@intel.com> accepted/tizen/ivi/20140127.211912@f435dd5
+- Re-enable weston logs by routing stderr to the journal.
+
 * Mon Jan 27 2014 Ossama Othman <ossama.othman@intel.com> accepted/tizen/ivi/20140123.182127@3de8de8
 - Changed background and panel colors to use Tizen palette colors.
 - Set Conflicts with ico-uxf-weston-plugin
