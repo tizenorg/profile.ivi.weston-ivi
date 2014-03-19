@@ -5,4 +5,5 @@ export ECORE_EVAS_ENGINE=wayland_egl
 export ECORE_IMF_MODULE=wayland
 
 # also export dbus session address for dbus clients (details on bug TIVI-1686 [https://bugs.tizen.org/jira/browse/TIVI-1686])
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/dbus/user_bus_socket
+export DBUS_SESSION_BUS_ADDRESS="kernel:path=/dev/kdbus/${UID}-user/bus;unix:path=/run/user/${UID}/dbus/user_bus_socket"
+export DBUS_SYSTEM_BUS_ADDRESS=kernel:path=/dev/kdbus/0-system/bus

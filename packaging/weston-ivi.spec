@@ -1,6 +1,6 @@
 Name:       weston-ivi
 Version:    1
-Release:    0
+Release:    90
 Summary:    Tizen IVI Weston configuration and set-up
 License:    MIT
 Group:      Automotive/Configuration
