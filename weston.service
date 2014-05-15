@@ -3,7 +3,7 @@ Description=Weston
 Requires=dbus.socket
 
 [Service]
-ExecStart=/usr/bin/weston-launch -- -i0
+ExecStart=/bin/sh -c 'if grep -q "no-gles" /proc/cmdline ; then weston-launch -- -i0 --use-pixman ; else weston-launch -- -i0 ; fi'
 StandardInput=tty
 StandardOutput=journal
 StandardError=journal

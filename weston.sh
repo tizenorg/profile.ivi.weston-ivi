@@ -1,5 +1,10 @@
-export ELM_ENGINE=wayland_egl
-export ECORE_EVAS_ENGINE=wayland_egl
+if grep -q "no-gles" /proc/cmdline ; then
+	export ELM_ENGINE=wayland_shm
+	export ECORE_EVAS_ENGINE=wayland_shm
+else
+	export ELM_ENGINE=wayland_egl
+	export ECORE_EVAS_ENGINE=wayland_egl
+fi
 
 # Make EFL apps use the wayland-based input method.
 export ECORE_IMF_MODULE=wayland
