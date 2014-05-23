@@ -31,11 +31,19 @@ cp %{SOURCE1001} .
 %install
 
 install -d %{buildroot}%{_unitdir_user}/weston.target.wants
-install -m 644 weston.service %{buildroot}%{_unitdir_user}/weston.service
+%if 0%{?simulator}
+install -m 644 weston_emulator.service %{buildroot}%{_unitdir_user}/weston.service
+%else
+install -m 644 weston_device.service %{buildroot}%{_unitdir_user}/weston.service
+%endif
 ln -sf ../weston.service %{buildroot}/%{_unitdir_user}/weston.target.wants/
 
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
-install -m 0644 weston.sh %{buildroot}%{_sysconfdir}/profile.d/
+%if 0%{?simulator}
+install -m 0644 weston_emulator.sh %{buildroot}%{_sysconfdir}/profile.d/weston.sh
+%else
+install -m 0644 weston_device.sh %{buildroot}%{_sysconfdir}/profile.d/weston.sh
+%endif
 
 %define weston_config_dir %{_sysconfdir}/xdg/weston
 mkdir -p %{buildroot}%{weston_config_dir}
