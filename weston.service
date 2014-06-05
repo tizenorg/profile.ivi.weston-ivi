@@ -3,7 +3,7 @@ Description=Weston
 Requires=dbus.socket
 
 [Service]
-ExecStart=/usr/bin/weston-launch -- -i0
+ExecStart=/usr/bin/weston-launch -- -i0 --current-mode
 StandardInput=tty
 StandardOutput=journal
 StandardError=journal
