@@ -22,6 +22,15 @@ Conflicts:  ico-uxf-weston-plugin
 This package contains Tizen IVI-specific configuration for the Weston
 compositor.
 
+%package config-modello
+Summary:    Tizen IVI Modello Weston configuration
+Group:      Automotive/Configuration
+Requires:   weekeyboard
+Conflicts:  ico-uxf-weston-plugin
+%description config-modello
+This package contains Tizen IVI-specific Modello configuration for the Weston
+compositor.
+
 %prep
 %setup -q
 cp %{SOURCE1001} .
@@ -41,6 +50,10 @@ install -m 0644 weston.sh %{buildroot}%{_sysconfdir}/profile.d/
 mkdir -p %{buildroot}%{weston_config_dir}
 install -m 0644 weston.ini %{buildroot}%{weston_config_dir}
 
+%define weston_config_modello_dir %{_sysconfdir}/xdg/weston
+mkdir -p %{buildroot}%{weston_config_modello_dir}
+install -m 0644 weston-modello.ini %{buildroot}%{weston_config_modello_dir}/weston.ini
+
 %files
 %manifest %{name}.manifest
 %defattr(-,root,root)
@@ -52,3 +65,7 @@ install -m 0644 weston.ini %{buildroot}%{weston_config_dir}
 %files config
 %manifest %{name}.manifest
 %config %{weston_config_dir}/weston.ini
+
+%files config-modello
+%manifest %{name}.manifest
+%config %{weston_config_modello_dir}/weston.ini
