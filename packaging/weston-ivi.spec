@@ -52,7 +52,7 @@ install -m 0644 weston.ini %{buildroot}%{weston_config_dir}
 install -m 0644 weston-modello.ini %{buildroot}%{weston_config_dir}/weston-modello.ini
 
 %post config-modello
-ln -s  %{weston_config_dir}/weston.ini  %{weston_config_dir}/weston-modello.ini
+ln -s %{weston_config_dir}/weston-modello.ini %{weston_config_dir}/weston.ini
 
 
 %postun config-modello
