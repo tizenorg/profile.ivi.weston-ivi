@@ -26,6 +26,8 @@ compositor.
 Summary:    Tizen IVI Modello Weston configuration
 Group:      Automotive/Configuration
 Requires:   weekeyboard
+Requires(post):   sed
+Requires(postun):   sed
 Conflicts:  ico-uxf-weston-plugin, weston-ivi-config
 %description config-modello
 This package contains Tizen IVI-specific Modello configuration for the Weston
@@ -53,10 +55,12 @@ install -m 0644 weston-modello.ini %{buildroot}%{weston_config_dir}/weston-model
 
 %post config-modello
 ln -s %{weston_config_dir}/weston-modello.ini %{weston_config_dir}/weston.ini
+sed -i 's/ --current-mode//' %{_unitdir_user}/weston.service
 
 
 %postun config-modello
 rm %{weston_config_dir}/weston.ini
+sed -i 's/\(^ExecStart.*\)/\1 --current-mode/' %{_unitdir_user}/weston.service
 
 %files
 %manifest %{name}.manifest
