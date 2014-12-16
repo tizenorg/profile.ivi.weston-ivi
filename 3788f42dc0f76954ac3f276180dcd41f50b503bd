@@ -1,0 +1,8 @@
+Code-Review+1: Ulf Hofemeier <ulf.hofemeier@linux.intel.com>
+Code-Review+2: Mikko Ylinen <mikko.ylinen@intel.com>
+Verified+1: Mikko Ylinen <mikko.ylinen@intel.com>
+Submitted-by: Mikko Ylinen <mikko.ylinen@intel.com>
+Submitted-at: Tue, 16 Dec 2014 08:09:01 -0800
+Reviewed-on: https://review.tizen.org/gerrit/31862
+Project: profile/ivi/weston-ivi
+Branch: refs/heads/tizen
