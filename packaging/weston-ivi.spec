@@ -26,6 +26,7 @@ compositor.
 Summary:    Tizen IVI Modello Weston configuration
 Group:      Automotive/Configuration
 Requires:   weekeyboard
+Requires:   tlm-config-ivi-singleseat
 Requires(post):   sed
 Requires(postun):   sed
 Conflicts:  ico-uxf-weston-plugin, weston-ivi-config
@@ -51,16 +52,12 @@ install -m 0644 weston.sh %{buildroot}%{_sysconfdir}/profile.d/
 %define weston_config_dir %{_sysconfdir}/xdg/weston
 mkdir -p %{buildroot}%{weston_config_dir}
 install -m 0644 weston.ini %{buildroot}%{weston_config_dir}
-install -m 0644 weston-modello.ini %{buildroot}%{weston_config_dir}/weston-modello.ini
 
 %post config-modello
-ln -s %{weston_config_dir}/weston-modello.ini %{weston_config_dir}/weston.ini
-sed -i 's/ --current-mode//' %{_unitdir_user}/weston.service
-
+sed -i 's/^\(SESSION_CMD\=.*user-session\)/\1-modello/' /etc/tlm-singleseat.conf
 
 %postun config-modello
-rm %{weston_config_dir}/weston.ini
-sed -i 's/\(^ExecStart.*\)/\1 --current-mode/' %{_unitdir_user}/weston.service
+sed -i 's/-modello//' /etc/tlm-singleseat.conf
 
 %files
 %manifest %{name}.manifest
@@ -76,4 +73,3 @@ sed -i 's/\(^ExecStart.*\)/\1 --current-mode/' %{_unitdir_user}/weston.service
 
 %files config-modello
 %manifest %{name}.manifest
-%config %{weston_config_dir}/weston-modello.ini
